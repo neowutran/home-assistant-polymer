@@ -66,6 +66,7 @@ export default new Polymer({
   validatingChanged(isValidating, isInvalid) {
     if (!isValidating && !isInvalid) {
       this.$.passwordInput.value = '';
+      this.$.otpInput.value = '';
     }
   },
 
@@ -89,6 +90,6 @@ export default new Polymer({
   validatePassword() {
     this.$.hideKeyboardOnFocus.focus();
 
-    validateAuth(this.$.passwordInput.value, this.$.rememberLogin.checked);
+    validateAuth(this.$.passwordInput.value, this.$.otpInput.value, this.$.rememberLogin.checked);
   },
 });

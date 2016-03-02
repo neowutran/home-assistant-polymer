@@ -60,6 +60,11 @@
             <input is="iron-input" type="password" id="passwordInput" />
             <paper-input-error invalid="[[isInvalid]]">[[errorMessage]]</paper-input-error>
           </paper-input-container>
+           <paper-input-container id="otpDecorator" invalid="[[isInvalid]]">
+            <label>Otp</label>
+            <input is="iron-input" type="text" id="otpInput" />
+            <paper-input-error invalid="[[isInvalid]]">[[errorMessage]]</paper-input-error>
+          </paper-input-container>
           <div class="layout horizontal center">
             <paper-checkbox for id='rememberLogin'>Remember</paper-checkbox>
             <paper-button id='loginButton'>Log In</paper-button>

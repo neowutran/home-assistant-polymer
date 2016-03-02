@@ -21,6 +21,7 @@ export default new Polymer({
 
   hostAttributes: {
     auth: null,
+    otp: null,
     icons: null,
   },
 
@@ -29,6 +30,9 @@ export default new Polymer({
   properties: {
     auth: {
       type: String,
+    },
+    otp:{
+      type: String
     },
     icons: {
       type: String,
@@ -58,10 +62,10 @@ export default new Polymer({
   loadIcons() {
     // If the import fails, we'll try to import again, must be a server glitch
     // Since HTML imports only resolve once, we import another url.
-    const success = () => { this.iconsLoaded = true; };
+    const success = () => this.iconsLoaded = true;
     this.importHref(`/static/mdi-${this.icons}.html`,
                     success,
-                    () => this.importHref('/static/mdi.html', success, success));
+                    () => this.importHref(`/static/mdi.html`, success, success));
   },
 
   created() {
@@ -72,7 +76,7 @@ export default new Polymer({
     reactor.batch(() => {
       // if auth was given, tell the backend
       if (this.auth) {
-        validateAuth(this.auth, false);
+        validateAuth(this.auth, this.otp, false);
       } else if (localStoragePreferences.authToken) {
         validateAuth(localStoragePreferences.authToken, true);
       }
